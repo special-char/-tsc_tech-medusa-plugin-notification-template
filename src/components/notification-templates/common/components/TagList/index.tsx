@@ -43,6 +43,9 @@ const NestedTags = ({ data, parentKey = "", onClick }) => {
         return (
           <div key={fullKey} className="ml-2 flex flex-col">
             <Badge
+              style={{
+                color: "black",
+              }}
               onClick={() => {
                 if (isObject) {
                   toggleExpand(fullKey);
