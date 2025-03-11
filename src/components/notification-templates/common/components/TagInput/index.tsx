@@ -15,6 +15,7 @@ export default function TagInputComponent(props) {
     <div className="*:not-first:mt-2">
       <TagInput
         id={id}
+        name={props.name}
         onTagRemove={(removeTag) =>
           props.onChange(
             exampleTags

@@ -33,7 +33,7 @@ const NestedTags = ({ data, parentKey = "", onClick }) => {
   };
 
   return (
-    <div className="flex flex-col gap-1 border-l border-gray-300 pl-2">
+    <div className="flex flex-col gap-1 border-l border-gray-300">
       {Object.entries(data).map(([key, value]) => {
         const isObject = typeof value === "object" && value !== null;
         const isArray = Array.isArray(value);
