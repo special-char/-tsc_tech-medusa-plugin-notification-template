@@ -4,7 +4,13 @@ import { ChevronDown, ChevronRight } from "@medusajs/icons";
 
 const TagList = ({ tags, onClick }) => {
   return (
-    <div className="flex flex-col gap-y-2 rounded-lg bg-white p-4 shadow-md">
+    <div
+      style={{
+        maxHeight: 600,
+        overflow: "scroll",
+      }}
+      className="flex flex-col overflow-scroll gap-y-2 rounded-lg bg-white p-4 shadow-md"
+    >
       <NestedTags data={tags} onClick={onClick} />
     </div>
   );

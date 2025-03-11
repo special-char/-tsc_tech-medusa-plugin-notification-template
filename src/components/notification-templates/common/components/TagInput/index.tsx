@@ -4,24 +4,39 @@ import { useId, useState } from "react";
 export default function TagInputComponent(props) {
   const id = useId();
   const [exampleTags, setExampleTags] = useState<Tag[]>(
-    props?.value?.trim() ? props?.value?.split(",") : []
+    props?.value?.trim()
+      ? props?.value?.split(",").map((x, i) => ({ id: i + 1, text: x }))
+      : []
   );
   const [activeTagIndex, setActiveTagIndex] = useState<number | null>(null);
-  console.log(props.value);
+  console.log(props.name, exampleTags);
 
   return (
     <div className="*:not-first:mt-2">
       <TagInput
         id={id}
-        onChange={(e) => {
-          e.preventDefault();
-          console.log("value", e.target.value);
-        }}
+        onTagRemove={(removeTag) =>
+          props.onChange(
+            exampleTags
+              .filter((x) => x.text != removeTag)
+              .map((x) => x.text)
+              .toString()
+          )
+        }
         tags={exampleTags}
         setTags={(newTags) => {
           setExampleTags(newTags);
-          if (Array.isArray(newTags)) {
-            props.onChange(newTags?.map((x) => x.text).toString());
+          console.log("new tag", newTags);
+          const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailReg.test(newTags[newTags.length - 1].text)) {
+            props.form.setError(props.name, {
+              message: "invalid email",
+            });
+            return;
+          } else {
+            if (Array.isArray(newTags)) {
+              props.onChange(newTags?.map((x) => x.text).toString());
+            }
           }
         }}
         placeholder={props.placeholder}
@@ -39,6 +54,7 @@ export default function TagInputComponent(props) {
         setActiveTagIndex={setActiveTagIndex}
         inlineTags={false}
         inputFieldPosition="top"
+        {...props}
       />
     </div>
   );

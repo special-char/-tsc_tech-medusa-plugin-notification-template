@@ -25,7 +25,7 @@ const ErrorMessage = ({
           style={{
             color: "red",
           }}
-          className="text-rose-600"
+          className="text-xs mt-1"
         >
           {error?.message || rules?.message}
         </p>

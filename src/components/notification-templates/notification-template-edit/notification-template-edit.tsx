@@ -112,6 +112,7 @@ const formFields = [
 export const NotificationEdit = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
+
   const events = NOTIFICATION_EVENTS;
   const tags = events.find((x) => x.name === state.event_name)?.tags;
 
@@ -120,6 +121,9 @@ export const NotificationEdit = () => {
       return {
         template: state.template,
         subject: state.subject,
+        to: state.to,
+        cc: state.cc,
+        bcc: state.bcc,
       };
     }, [state.subject, state.template]),
     mode: "onBlur",

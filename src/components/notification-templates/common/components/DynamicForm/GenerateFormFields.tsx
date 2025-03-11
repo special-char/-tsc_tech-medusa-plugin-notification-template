@@ -40,6 +40,7 @@ const GenerateFormFields = ({
                       ...field,
                       value: field.value || null,
                       onChange: field.onChange,
+                      form,
                     }
                   )}
                   <ErrorMessage

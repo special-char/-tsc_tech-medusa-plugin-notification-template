@@ -114,6 +114,9 @@ export const NotificationTemplateCreate = () => {
         event_name: "",
         template: "",
         subject: "",
+        to: "",
+        cc: "",
+        bcc: "",
       };
     }, []),
     mode: "onBlur",
