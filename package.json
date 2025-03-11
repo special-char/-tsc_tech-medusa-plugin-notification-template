@@ -31,10 +31,10 @@
     "@medusajs/admin-sdk": "2.4.0",
     "@medusajs/cli": "2.4.0",
     "@medusajs/framework": "2.4.0",
+    "@medusajs/icons": "2.4.0",
     "@medusajs/medusa": "2.4.0",
     "@medusajs/test-utils": "2.4.0",
     "@medusajs/ui": "4.0.4",
-    "@medusajs/icons": "2.4.0",
     "@mikro-orm/cli": "6.4.3",
     "@mikro-orm/core": "6.4.3",
     "@mikro-orm/knex": "6.4.3",
@@ -58,10 +58,10 @@
     "@medusajs/admin-sdk": "2.4.0",
     "@medusajs/cli": "2.4.0",
     "@medusajs/framework": "2.4.0",
-    "@medusajs/test-utils": "2.4.0",
-    "@medusajs/medusa": "2.4.0",
-    "@medusajs/ui": "4.0.3",
     "@medusajs/icons": "2.4.0",
+    "@medusajs/medusa": "2.4.0",
+    "@medusajs/test-utils": "2.4.0",
+    "@medusajs/ui": "4.0.3",
     "@mikro-orm/cli": "6.4.3",
     "@mikro-orm/core": "6.4.3",
     "@mikro-orm/knex": "6.4.3",
@@ -73,5 +73,9 @@
   "engines": {
     "node": ">=20"
   },
-  "packageManager": "yarn@4.4.0+sha512.91d93b445d9284e7ed52931369bc89a663414e5582d00eea45c67ddc459a2582919eece27c412d6ffd1bd0793ff35399381cb229326b961798ce4f4cc60ddfdb"
+  "packageManager": "yarn@4.4.0+sha512.91d93b445d9284e7ed52931369bc89a663414e5582d00eea45c67ddc459a2582919eece27c412d6ffd1bd0793ff35399381cb229326b961798ce4f4cc60ddfdb",
+  "dependencies": {
+    "emblor": "^1.4.7",
+    "radix-ui": "^1.1.3"
+  }
 }
