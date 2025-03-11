@@ -1,12 +1,11 @@
 import { defineRouteConfig } from "@medusajs/admin-sdk";
 import { BellAlert } from "@medusajs/icons";
-// import { NotificationTemplateListTable } from "../../../components/notification-templates/notification-template-list/components/notification-template-list-table";
+import { NotificationTemplateListTable } from "../../../components/notification-templates/notification-template-list/components/notification-template-list-table";
 
 const CustomSettingPage = () => {
   return (
     <>
-      page
-      {/* <NotificationTemplateListTable /> */}
+      <NotificationTemplateListTable />
     </>
   );
 };

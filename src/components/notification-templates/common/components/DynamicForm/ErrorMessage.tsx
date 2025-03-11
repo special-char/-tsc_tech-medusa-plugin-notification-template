@@ -1,15 +1,14 @@
-"use client"
-import { memo } from "react"
-import { Control, FieldValues, useController } from "react-hook-form"
+import { memo } from "react";
+import { Control, FieldValues, useController } from "react-hook-form";
 
 const ErrorMessage = ({
   name,
   control,
   rules,
 }: {
-  name: string
-  control: Control<FieldValues>
-  rules: any
+  name: string;
+  control: Control<FieldValues>;
+  rules: any;
 }) => {
   const {
     fieldState: { error },
@@ -17,15 +16,22 @@ const ErrorMessage = ({
     name,
     control,
     rules,
-  })
+  });
 
   return (
     <>
       {error && (
-        <p className="text-rose-600">{error?.message || rules?.message}</p>
+        <p
+          style={{
+            color: "red",
+          }}
+          className="text-rose-600"
+        >
+          {error?.message || rules?.message}
+        </p>
       )}
     </>
-  )
-}
+  );
+};
 
-export default memo(ErrorMessage)
+export default memo(ErrorMessage);

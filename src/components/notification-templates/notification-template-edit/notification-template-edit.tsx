@@ -44,7 +44,7 @@ const schema = {
     props: {
       placeholder: "Congratulations on your purchase",
     },
-    validation: { required: true },
+    validation: { required: "Subject is required" },
   },
   to: {
     label: "To",
@@ -52,7 +52,7 @@ const schema = {
     props: {
       placeholder: "example@gmail.com",
     },
-    validation: { required: true },
+    validation: { required: "To is required" },
   },
   cc: {
     label: "CC",
@@ -60,7 +60,6 @@ const schema = {
     props: {
       placeholder: "example@gmail.com",
     },
-    validation: { required: true },
   },
   bcc: {
     label: "BCC",
@@ -68,7 +67,6 @@ const schema = {
     props: {
       placeholder: "example@gmail.com",
     },
-    validation: { required: true },
   },
   template: {
     label: "Template (HTML format)",
@@ -78,7 +76,7 @@ const schema = {
       placeholder: "<html>...</html>",
       className: "min-h-52",
     },
-    validation: { required: true },
+    validation: { required: "Template is required" },
   },
 };
 

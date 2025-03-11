@@ -1,15 +1,15 @@
-import { Controller, FieldValues, UseFormReturn } from "react-hook-form"
-import React from "react"
-import getInputElement from "./getInputElement"
-import { Input, Label, clx } from "@medusajs/ui"
-import ErrorMessage from "./ErrorMessage"
+import { Controller, FieldValues, UseFormReturn } from "react-hook-form";
+import React from "react";
+import getInputElement from "./getInputElement";
+import { Input, Label, clx } from "@medusajs/ui";
+import ErrorMessage from "./ErrorMessage";
 
 const GenerateFormFields = ({
   schema,
   form,
 }: {
-  form: UseFormReturn<FieldValues, any, undefined>
-  schema: Record<string, any>
+  form: UseFormReturn<FieldValues, any, undefined>;
+  schema: Record<string, any>;
 }) => {
   return (
     <>
@@ -31,29 +31,30 @@ const GenerateFormFields = ({
                     >
                       {fields.label || field.name}
                     </span>
-                    {React.createElement(
-                      getInputElement(fields.fieldType) as typeof Input,
-                      {
-                        ...fields.props,
-                        ...field,
-                        value: field.value || null,
-                        onChange: field.onChange,
-                      }
-                    )}
-                    <ErrorMessage
-                      control={form.control}
-                      name={key}
-                      rules={fields.validation}
-                    />
                   </Label>
+
+                  {React.createElement(
+                    getInputElement(fields.fieldType) as typeof Input,
+                    {
+                      ...fields.props,
+                      ...field,
+                      value: field.value || null,
+                      onChange: field.onChange,
+                    }
+                  )}
+                  <ErrorMessage
+                    control={form.control}
+                    name={key}
+                    rules={fields.validation}
+                  />
                 </div>
-              )
+              );
             }}
           />
-        )
+        );
       })}
     </>
-  )
-}
+  );
+};
 
-export default GenerateFormFields
+export default GenerateFormFields;

@@ -33,8 +33,8 @@ const schema = ({ setTags }) => ({
   event_name: {
     label: "Event",
     fieldType: "EventSelect",
-    validation: { required: true },
     props: { eventList: NOTIFICATION_EVENTS, setTags },
+    validation: { required: "Event is required" },
   },
   subject: {
     label: "Subject",
@@ -42,7 +42,7 @@ const schema = ({ setTags }) => ({
     props: {
       placeholder: "Congratulations on your purchase",
     },
-    validation: { required: true },
+    validation: { required: "Subject is required" },
   },
   to: {
     label: "To",
@@ -50,7 +50,7 @@ const schema = ({ setTags }) => ({
     props: {
       placeholder: "example@gmail.com",
     },
-    validation: { required: true },
+    validation: { required: "To is required" },
   },
   cc: {
     label: "CC",
@@ -58,7 +58,6 @@ const schema = ({ setTags }) => ({
     props: {
       placeholder: "example@gmail.com",
     },
-    validation: { required: true },
   },
   bcc: {
     label: "BCC",
@@ -66,7 +65,6 @@ const schema = ({ setTags }) => ({
     props: {
       placeholder: "example@gmail.com",
     },
-    validation: { required: true },
   },
   template: {
     label: "Template (HTML format)",
@@ -76,7 +74,7 @@ const schema = ({ setTags }) => ({
       placeholder: "<html>...</html>",
       className: "min-h-52",
     },
-    validation: { required: true },
+    validation: { required: "Template is required" },
   },
 });
 const fetchEvents = async (setEvent: Dispatch<SetStateAction<Event[]>>) => {
@@ -125,15 +123,15 @@ export const NotificationTemplateCreate = () => {
     try {
       console.log({ data });
 
-      // const response = await createGiftTemplates(data);
-      // const res = await response?.json();
-      // if (!response?.ok) {
-      //   formMethods.setError("event_name", {
-      //     message: res.message,
-      //   });
-      //   return;
-      // }
-      // navigate("/notification-template");
+      const response = await createGiftTemplates(data);
+      const res = await response?.json();
+      if (!response?.ok) {
+        formMethods.setError("event_name", {
+          message: res.message,
+        });
+        return;
+      }
+      navigate("/notification-template");
     } catch (error) {
       console.log("onSubmit error", error);
     }

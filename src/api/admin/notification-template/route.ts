@@ -7,6 +7,9 @@ type PostAdminCreateNotificationTemplateType = {
   event_name: string;
   template: string;
   subject: string;
+  to: string;
+  cc: string;
+  bcc: string;
 };
 
 export const POST = async (
@@ -31,9 +34,14 @@ export const POST = async (
       "Event template is already exist."
     );
   }
+  const requestObj = {
+    ...req.body,
+    cc: req.body.cc || "",
+    bcc: req.body.bcc || "",
+  };
   const notificationTemplate =
     await notificationTemplateModuleService.createNotificationTemplates(
-      req.body
+      requestObj
     );
   res.send({ notificationTemplate });
 };
