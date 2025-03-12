@@ -29,7 +29,7 @@ export type SchemaField = {
 
 type Schema = Record<string, SchemaField>;
 
-const schema = ({ setTags, exTags }) => ({
+const schema = ({ setTags }) => ({
   event_name: {
     label: "Event",
     fieldType: "EventSelect",
@@ -49,7 +49,6 @@ const schema = ({ setTags, exTags }) => ({
     fieldType: "TagInputComponent",
     props: {
       placeholder: "example@gmail.com",
-      exTags,
     },
     // validation: { required: "To is required" },
   },
@@ -58,7 +57,6 @@ const schema = ({ setTags, exTags }) => ({
     fieldType: "TagInputComponent",
     props: {
       placeholder: "example@gmail.com",
-      exTags,
     },
   },
   bcc: {
@@ -66,7 +64,6 @@ const schema = ({ setTags, exTags }) => ({
     fieldType: "TagInputComponent",
     props: {
       placeholder: "example@gmail.com",
-      exTags,
     },
   },
   template: {
@@ -142,7 +139,7 @@ export const NotificationTemplateCreate = () => {
       console.log("onSubmit error", error);
     }
   };
-  const { insertTag, exTags } = useLastFocusedElement(formMethods);
+  const { insertTag } = useLastFocusedElement(formMethods);
 
   return (
     <RouteFocusModal>
@@ -152,7 +149,7 @@ export const NotificationTemplateCreate = () => {
           form={formMethods}
           isPending={formMethods.formState.isSubmitting}
           onSubmit={onSubmit}
-          schema={schema({ setTags, exTags })}
+          schema={schema({ setTags })}
         />
         {/* <NotificationTemplateForm
           setTags={setTags}

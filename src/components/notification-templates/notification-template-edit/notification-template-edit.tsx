@@ -30,7 +30,7 @@ const updateGiftTemplates = async ({ id, data }: { id: string; data: any }) => {
   }
 };
 
-const schema = ({ exTags }) => ({
+const schema = {
   // event_name: {
   //   label: "Event",
   //   fieldType: "EventSelect",
@@ -50,7 +50,6 @@ const schema = ({ exTags }) => ({
     fieldType: "TagInputComponent",
     props: {
       placeholder: "example@gmail.com",
-      exTags,
     },
     validation: { required: "To is required" },
   },
@@ -59,7 +58,6 @@ const schema = ({ exTags }) => ({
     fieldType: "TagInputComponent",
     props: {
       placeholder: "example@gmail.com",
-      exTags,
     },
   },
   bcc: {
@@ -67,7 +65,6 @@ const schema = ({ exTags }) => ({
     fieldType: "TagInputComponent",
     props: {
       placeholder: "example@gmail.com",
-      exTags,
     },
   },
   template: {
@@ -80,7 +77,7 @@ const schema = ({ exTags }) => ({
     },
     validation: { required: "Template is required" },
   },
-});
+};
 
 export const NotificationEdit = () => {
   const navigate = useNavigate();
@@ -112,7 +109,7 @@ export const NotificationEdit = () => {
       console.log("onSubmit error", error);
     }
   };
-  const { insertTag, exTags } = useLastFocusedElement(formMethods);
+  const { insertTag } = useLastFocusedElement(formMethods);
 
   return (
     <RouteFocusModal>
@@ -122,7 +119,7 @@ export const NotificationEdit = () => {
           form={formMethods}
           isPending={formMethods.formState.isSubmitting}
           onSubmit={onSubmit}
-          schema={schema({ exTags })}
+          schema={schema}
         />
         <div className="flex flex-1 flex-col p-4">
           <Text size="small">Available Tags</Text>
