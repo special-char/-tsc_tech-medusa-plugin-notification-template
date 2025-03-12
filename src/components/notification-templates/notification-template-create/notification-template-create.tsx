@@ -29,7 +29,7 @@ export type SchemaField = {
 
 type Schema = Record<string, SchemaField>;
 
-const schema = ({ setTags }) => ({
+const schema = ({ setTags, exTags }) => ({
   event_name: {
     label: "Event",
     fieldType: "EventSelect",
@@ -49,14 +49,16 @@ const schema = ({ setTags }) => ({
     fieldType: "TagInputComponent",
     props: {
       placeholder: "example@gmail.com",
+      exTags,
     },
-    validation: { required: "To is required" },
+    // validation: { required: "To is required" },
   },
   cc: {
     label: "CC",
     fieldType: "TagInputComponent",
     props: {
       placeholder: "example@gmail.com",
+      exTags,
     },
   },
   bcc: {
@@ -64,6 +66,7 @@ const schema = ({ setTags }) => ({
     fieldType: "TagInputComponent",
     props: {
       placeholder: "example@gmail.com",
+      exTags,
     },
   },
   template: {
@@ -139,39 +142,7 @@ export const NotificationTemplateCreate = () => {
       console.log("onSubmit error", error);
     }
   };
-  const lastFocusedRef = useLastFocusedElement();
-
-  const insertTag = (
-    tag: string,
-    lastFocusedRef: React.RefObject<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const inputElement = lastFocusedRef.current;
-    if (!inputElement) {
-      console.warn("No input or textarea was previously focused.");
-      return;
-    }
-
-    const {
-      selectionStart: start = 0,
-      selectionEnd: end = 0,
-      value,
-    } = inputElement;
-
-    // Insert the tag at the cursor position
-    inputElement.value = `${value.slice(0, start!)}{{${tag}}}${value.slice(
-      end!
-    )}`;
-    console.log("inputElement.name", inputElement.name);
-    formMethods.setValue(inputElement.name, inputElement.value);
-    // Restore cursor position and focus
-    setTimeout(() => {
-      inputElement.setSelectionRange(
-        start! + `{{${tag}}}`.length,
-        start! + `{{${tag}}}`.length
-      );
-      inputElement.focus();
-    }, 0);
-  };
+  const { insertTag, exTags } = useLastFocusedElement(formMethods);
 
   return (
     <RouteFocusModal>
@@ -181,7 +152,7 @@ export const NotificationTemplateCreate = () => {
           form={formMethods}
           isPending={formMethods.formState.isSubmitting}
           onSubmit={onSubmit}
-          schema={schema({ setTags })}
+          schema={schema({ setTags, exTags })}
         />
         {/* <NotificationTemplateForm
           setTags={setTags}
@@ -195,7 +166,7 @@ export const NotificationTemplateCreate = () => {
           <TagList
             tags={tags}
             onClick={(tag: string) => {
-              insertTag(tag, lastFocusedRef);
+              insertTag(tag);
             }}
           />
         </div>

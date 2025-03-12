@@ -7,7 +7,7 @@ export type SchemaField = {
   label?: string;
   fieldType: string;
   props?: any;
-  validation: Record<string, any>;
+  validation?: Record<string, any>;
 };
 
 type Props = {

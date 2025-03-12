@@ -1,6 +1,6 @@
 import { Input, Textarea, Checkbox } from "@medusajs/ui";
-import TagInputComponent from "../TagInput";
 import EventSelect from "../SelectEvent";
+import CustomTagInput from "../TagInput";
 type InputElementType = React.ComponentType<any>;
 
 const getInputElement = (type: string): InputElementType => {
@@ -8,7 +8,7 @@ const getInputElement = (type: string): InputElementType => {
     case "input":
       return Input;
     case "TagInputComponent":
-      return TagInputComponent;
+      return CustomTagInput;
     case "EventSelect":
       return EventSelect;
     case "textarea":
