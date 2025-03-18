@@ -1,6 +1,6 @@
 import { type SubscriberConfig, type SubscriberArgs } from "@medusajs/medusa";
 import { NOTIFICATION_EVENTS } from "../utils/event";
-import { subscriberWorkflow } from "../workflows/subscriber-workflow/subscriber-workflow/subscriber-workflow";
+import { subscriberWorkflow } from "../workflows/subscriber-workflow/subscriber-workflow";
 
 export default async function subscriberHandler({
   event: { data, name },
