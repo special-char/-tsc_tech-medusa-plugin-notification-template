@@ -1,17 +1,14 @@
 import {
   createHook,
   createWorkflow,
-  transform,
   WorkflowResponse,
 } from "@medusajs/framework/workflows-sdk";
-import { ModuleOptions } from "../../../modules/notification-template/service";
 import sendEmailStep from "./steps/send-email-step";
 import { getNotificationTemplateStep } from "./steps/get-notification-template-step";
 import { getEntityNameStep } from "./steps/get-entity-name-step";
 import { useQueryGraphStep } from "@medusajs/medusa/core-flows";
 
 type WorkflowInput = {
-  options: ModuleOptions;
   name: string;
   data: Record<string, any>;
 };
