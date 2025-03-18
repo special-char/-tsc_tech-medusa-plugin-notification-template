@@ -1,16 +1,7 @@
 import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk";
-import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils";
-import { NOTIFICATION_TEMPLATE_MODULE } from "../../../../modules/notification-template";
-import NotificationTemplateModuleService, {
-  ModuleOptions,
-} from "../../../../modules/notification-template/service";
-import Handlebars from "handlebars";
+import { Modules } from "@medusajs/framework/utils";
 
 type WorkflowInput = {
-  entityName: string;
-  data: Record<string, any>;
-  options?: ModuleOptions;
-  entityData: any[];
   notificationTemplate: {
     id: string;
     template: string;
@@ -23,57 +14,56 @@ type WorkflowInput = {
     updated_at: Date;
     deleted_at: Date | null;
   };
+  entityDetails: any;
+  templateBody: {
+    emailBody: string;
+    to: string[];
+    cc: string[];
+    bcc: string[];
+    subject: string;
+  };
 };
 
 const sendEmailStep = createStep(
   "send-email-step",
   async (
-    { entityName, data, notificationTemplate, entityData }: WorkflowInput,
+    { notificationTemplate, entityDetails, templateBody }: WorkflowInput,
     { container }
   ) => {
     try {
-      const cacheModuleService = container.resolve(Modules.CACHE);
-
-      const extraData: Record<string, any> | null =
-        await cacheModuleService.get("extraData");
-      // const query = container.resolve(ContainerRegistrationKeys.QUERY);
-
       const notificationService = container.resolve("notification");
 
-      // const { data: entityData } = await query.graph({
-      //   entity: entityName,
-      //   filters: { id: data.id },
-      //   fields: ["*", "*.*"],
-      // });
-      if (!entityData.length) {
-        console.warn(`No entity data found for ID: ${data.id}`);
-        return;
-      }
+      // if (!entityData.length) {
+      //   console.warn(`No entity data found for ID: ${data.id}`);
+      //   return;
+      // }
+      const cacheModuleService = container.resolve(Modules.CACHE);
 
-      const entityDetails = {
-        ...(entityData[0] && { ...entityData[0] }),
-        ...(extraData && { ...extraData }),
-      };
+      // const entityDetails = {
+      //   ...(entityData[0] && { ...entityData[0] }),
+      //   ...(extraData && { ...extraData }),
+      // };
 
-      const compileAndParseEmails = (template?: string): string[] => {
-        if (!template) return [];
-        return Handlebars.compile(template)(entityDetails)
-          .split(",")
-          .map((email) => email.trim())
-          .filter((email) => email);
-      };
+      // const compileAndParseEmails = (template?: string): string[] => {
+      //   if (!template) return [];
+      //   return Handlebars.compile(template)(entityDetails)
+      //     .split(",")
+      //     .map((email) => email.trim())
+      //     .filter((email) => email);
+      // };
 
-      const templateBody = {
-        emailBody: Handlebars.compile(notificationTemplate.template)(
-          entityDetails
-        ),
-        to: compileAndParseEmails(notificationTemplate.to),
-        cc: compileAndParseEmails(notificationTemplate.cc),
-        bcc: compileAndParseEmails(notificationTemplate.bcc),
-        subject: Handlebars.compile(notificationTemplate.subject)(
-          entityDetails
-        ),
-      };
+      // const templateBody = {
+      //   emailBody: Handlebars.compile(notificationTemplate.template)(
+      //     entityDetails
+      //   ),
+      //   to: compileAndParseEmails(notificationTemplate.to),
+      //   cc: compileAndParseEmails(notificationTemplate.cc),
+      //   bcc: compileAndParseEmails(notificationTemplate.bcc),
+      //   subject: Handlebars.compile(notificationTemplate.subject)(
+      //     entityDetails
+      //   ),
+      // };
+
       const response = await notificationService.createNotifications([
         {
           channel: "email",
