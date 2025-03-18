@@ -7,48 +7,44 @@ import NotificationTemplateModuleService, {
 import Handlebars from "handlebars";
 
 type WorkflowInput = {
-  name: string;
+  entityName: string;
   data: Record<string, any>;
   options?: ModuleOptions;
+  entityData: any[];
+  notificationTemplate: {
+    id: string;
+    template: string;
+    subject: string;
+    event_name: string;
+    to: string;
+    cc: string;
+    bcc: string;
+    created_at: Date;
+    updated_at: Date;
+    deleted_at: Date | null;
+  };
 };
 
 const sendEmailStep = createStep(
   "send-email-step",
-  async ({ name, data }: WorkflowInput, { container }) => {
+  async (
+    { entityName, data, notificationTemplate, entityData }: WorkflowInput,
+    { container }
+  ) => {
     try {
       const cacheModuleService = container.resolve(Modules.CACHE);
 
       const extraData: Record<string, any> | null =
         await cacheModuleService.get("extraData");
-
-      const query = container.resolve(ContainerRegistrationKeys.QUERY);
+      // const query = container.resolve(ContainerRegistrationKeys.QUERY);
 
       const notificationService = container.resolve("notification");
 
-      const notificationTemplateService: NotificationTemplateModuleService =
-        container.resolve(NOTIFICATION_TEMPLATE_MODULE);
-
-      const [notificationTemplate] =
-        await notificationTemplateService.listNotificationTemplates(
-          { event_name: name },
-          {}
-        );
-
-      if (!notificationTemplate) {
-        console.warn(`No notification template found for event: ${name}`);
-        return;
-      }
-      const entityName = name?.split(".")?.[0]?.replaceAll("-", "_");
-      if (!entityName) {
-        console.warn(`Invalid entity name derived from event: ${name}`);
-        return;
-      }
-
-      const { data: entityData } = await query.graph({
-        entity: entityName,
-        filters: { id: data.id },
-        fields: ["*", "*.*"],
-      });
+      // const { data: entityData } = await query.graph({
+      //   entity: entityName,
+      //   filters: { id: data.id },
+      //   fields: ["*", "*.*"],
+      // });
       if (!entityData.length) {
         console.warn(`No entity data found for ID: ${data.id}`);
         return;

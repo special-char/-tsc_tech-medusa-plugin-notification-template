@@ -6,6 +6,9 @@ import {
 } from "@medusajs/framework/workflows-sdk";
 import { ModuleOptions } from "../../../modules/notification-template/service";
 import sendEmailStep from "./steps/send-email-step";
+import { getNotificationTemplateStep } from "./steps/get-notification-template-step";
+import { getEntityNameStep } from "./steps/get-entity-name-step";
+import { useQueryGraphStep } from "@medusajs/medusa/core-flows";
 
 type WorkflowInput = {
   options: ModuleOptions;
@@ -18,15 +21,27 @@ export const subscriberWorkflow = createWorkflow(
   function (input: WorkflowInput) {
     const { name, data } = input;
 
-    const hookData = createHook("subscriberHook", {
+    const subscriberHook = createHook("subscriberHook", {
       name,
       data,
     });
 
-    sendEmailStep({ name, data });
+    const { entityName } = getEntityNameStep({ name });
+
+    const { notificationTemplate } = getNotificationTemplateStep({
+      name,
+    });
+
+    const { data: entityData } = useQueryGraphStep({
+      entity: entityName,
+      filters: { id: data.id },
+      fields: ["*", "*.*"],
+    });
+
+    sendEmailStep({ entityName, data, notificationTemplate, entityData });
 
     return new WorkflowResponse(" Subscriber called", {
-      hooks: [hookData],
+      hooks: [subscriberHook],
     });
   }
 );

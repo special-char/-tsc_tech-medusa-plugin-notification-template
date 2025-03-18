@@ -4,16 +4,31 @@ import { NOTIFICATION_TEMPLATE_MODULE } from "../../../../modules/notification-t
 
 type WorkflowInput = {
   name: string;
-  data: Record<string, any>;
 };
-export const getNotificationStep = createStep(
+export const getNotificationTemplateStep = createStep(
   "get-notification-template-step",
-  async function (input: WorkflowInput, { container }) {
-    const { name, data } = input;
+  async function (
+    input: WorkflowInput,
+    { container }
+  ): Promise<
+    StepResponse<{
+      notificationTemplate: {
+        id: string;
+        template: string;
+        subject: string;
+        event_name: string;
+        to: string;
+        cc: string;
+        bcc: string;
+        created_at: Date;
+        updated_at: Date;
+        deleted_at: Date | null;
+      };
+    }>
+  > {
+    const { name } = input;
     const notificationTemplateService: NotificationTemplateModuleService =
       container.resolve(NOTIFICATION_TEMPLATE_MODULE);
-    console.log({ name, data });
-
     const [notificationTemplate] =
       await notificationTemplateService.listNotificationTemplates(
         { event_name: name },
