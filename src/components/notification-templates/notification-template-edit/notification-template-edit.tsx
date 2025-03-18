@@ -101,8 +101,6 @@ export const NotificationEdit = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
-      console.log({ data });
-
       await updateGiftTemplates({ id: state?.id, data });
       navigate("/notification-template");
     } catch (error) {

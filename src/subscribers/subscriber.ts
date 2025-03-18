@@ -12,16 +12,14 @@ export default async function subscriberHandler({
   const notificationTempalteService: NotificationTemplateModuleService =
     await container.resolve(NOTIFICATION_TEMPLATE_MODULE);
   const options = await notificationTempalteService.getOptions();
-  console.log(`in subscriber:---- ${name}`);
 
-  const { result } = await subscriberWorkflow(container).run({
+  await subscriberWorkflow(container).run({
     input: {
       data: data as unknown as any,
       name,
       options,
     },
   });
-  console.log(`workflow hookData:----`, result);
 }
 
 export const config: SubscriberConfig = {

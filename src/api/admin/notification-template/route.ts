@@ -55,7 +55,6 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
     fields: ["*", "event_name"],
   });
   const options = await notificationTemplateModuleService.getOptions();
-  console.log(options?.events?.[0]);
   res.send(notificationTemplate);
   //     try {
   //   } catch (error) {

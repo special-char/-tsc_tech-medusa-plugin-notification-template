@@ -124,8 +124,6 @@ export const NotificationTemplateCreate = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
-      console.log({ data });
-
       const response = await createGiftTemplates(data);
       const res = await response?.json();
       if (!response?.ok) {
@@ -141,8 +139,6 @@ export const NotificationTemplateCreate = () => {
   };
   const { insertTag } = useLastFocusedElement(formMethods);
   const event_name = formMethods.watch("event_name");
-  console.log({ event_name });
-
   return (
     <RouteFocusModal>
       <RouteFocusModal.Header />
