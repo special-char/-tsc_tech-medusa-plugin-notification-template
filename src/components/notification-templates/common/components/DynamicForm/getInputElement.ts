@@ -11,7 +11,7 @@ const getInputElement = (type: string): InputElementType => {
       return CustomTagInput;
     case "EventSelect":
       return EventSelect;
-    case "textarea":
+    case "Textarea":
       return Textarea;
     case "checkbox":
       return Checkbox;

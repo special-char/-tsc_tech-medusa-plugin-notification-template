@@ -14,20 +14,16 @@ export default async function subscriberHandler({
   const options = await notificationTempalteService.getOptions();
   console.log(`in subscriber:---- ${name}`);
 
-  await subscriberWorkflow(container).run({
+  const { result } = await subscriberWorkflow(container).run({
     input: {
       data: data as unknown as any,
       name,
       options,
     },
   });
+  console.log(`workflow hookData:----`, result);
 }
 
 export const config: SubscriberConfig = {
-  event: NOTIFICATION_EVENTS?.reduce((p, c) => {
-    if (c?.tags) {
-      p.push(c.name as never);
-    }
-    return p;
-  }, []),
+  event: NOTIFICATION_EVENTS?.map((x) => x.name),
 };

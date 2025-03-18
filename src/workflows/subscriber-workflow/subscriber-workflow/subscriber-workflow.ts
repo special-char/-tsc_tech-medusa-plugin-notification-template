@@ -1,11 +1,11 @@
 import {
+  createHook,
   createWorkflow,
+  transform,
   WorkflowResponse,
 } from "@medusajs/framework/workflows-sdk";
 import { ModuleOptions } from "../../../modules/notification-template/service";
-import switchEventStep from "./steps/switch-event-step";
-import checkSubscriberStep from "./steps/custom-subscriber-step";
-import { emitEventStep } from "@medusajs/medusa/core-flows";
+import sendEmailStep from "./steps/send-email-step";
 
 type WorkflowInput = {
   options: ModuleOptions;
@@ -16,22 +16,17 @@ type WorkflowInput = {
 export const subscriberWorkflow = createWorkflow(
   "subscriber-workflow",
   function (input: WorkflowInput) {
-    const { options, name, data } = input;
-    const { subscriberId } = checkSubscriberStep({
-      options,
+    const { name, data } = input;
+
+    const hookData = createHook("subscriberHook", {
       name,
-    });
-    if (subscriberId) {
-      emitEventStep({
-        eventName: subscriberId,
-        data: data as any,
-      });
-    }
-    switchEventStep({
-      name,
-      options,
       data,
     });
-    return new WorkflowResponse(" Subscriber called");
+
+    sendEmailStep({ name, data });
+
+    return new WorkflowResponse(" Subscriber called", {
+      hooks: [hookData],
+    });
   }
 );

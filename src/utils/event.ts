@@ -28,6 +28,7 @@ const PRODUCT_CREATED = {
   updated_at: "2025-03-11T07:05:13.596Z",
   deleted_at: null,
 };
+
 const CUSTOMER_CREATED = {
   id: "cus_01JP2MWPQCH37SXC1WSG70AHR3",
   company_name: "wrvwrwv",
@@ -46,19 +47,19 @@ const CUSTOMER_CREATED = {
 };
 
 const NOTIFICATION_EVENTS = [
-  { id: 1, name: "auth.password_reset", tags: {} },
+  // { id: 1, name: "auth.password_reset", tags: {} },
   { id: 2, name: "cart.created", tags: {} },
   { id: 3, name: "cart.updated", tags: {} },
   { id: 4, name: "cart.region_updated", tags: {} },
   { id: 5, name: "customer.created", tags: CUSTOMER_CREATED },
   { id: 6, name: "customer.updated", tags: CUSTOMER_CREATED },
   { id: 7, name: "customer.deleted", tags: CUSTOMER_CREATED },
-  { id: 8, name: "shipment.created", tags: {} },
-  { id: 9, name: "delivery.created", tags: {} },
-  { id: 10, name: "invite.accepted", tags: {} },
-  { id: 11, name: "invite.created", tags: {} },
-  { id: 12, name: "invite.deleted", tags: {} },
-  { id: 13, name: "invite.resent", tags: {} },
+  // { id: 8, name: "shipment.created", tags: {} },
+  // { id: 9, name: "delivery.created", tags: {} },
+  // { id: 10, name: "invite.accepted", tags: {} },
+  // { id: 11, name: "invite.created", tags: {} },
+  // { id: 12, name: "invite.deleted", tags: {} },
+  // { id: 13, name: "invite.resent", tags: {} },
   { id: 14, name: "order.updated", tags: {} },
   { id: 15, name: "order.placed", tags: {} },
   { id: 16, name: "order.canceled", tags: {} },

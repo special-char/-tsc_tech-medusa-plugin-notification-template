@@ -140,6 +140,8 @@ export const NotificationTemplateCreate = () => {
     }
   };
   const { insertTag } = useLastFocusedElement(formMethods);
+  const event_name = formMethods.watch("event_name");
+  console.log({ event_name });
 
   return (
     <RouteFocusModal>
