@@ -1,7 +1,6 @@
 import { Button, Container, Heading, Text } from "@medusajs/ui";
 import { ColumnDef } from "@tanstack/react-table";
 import { useMemo, useEffect, useState, SetStateAction } from "react";
-import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { HttpTypes } from "@medusajs/types";
 import { _DataTable } from "../../../../table/data-table";
@@ -72,7 +71,6 @@ export interface NotificationTemplate {
 }
 
 export const NotificationTemplateListTable = () => {
-  const { t } = useTranslation();
   const { searchParams, raw } = useProductTypeTableQuery({
     pageSize: PAGE_SIZE,
   });
@@ -152,7 +150,6 @@ export const NotificationTemplateListTable = () => {
 };
 
 const useColumns = () => {
-  const { t } = useTranslation();
   return useMemo<ColumnDef<NotificationTemplate>[]>(
     () => [
       {
@@ -194,6 +191,6 @@ const useColumns = () => {
         },
       },
     ],
-    [t]
+    []
   );
 };

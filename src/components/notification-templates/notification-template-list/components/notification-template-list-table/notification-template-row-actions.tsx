@@ -1,10 +1,6 @@
 import { PencilSquare, Trash } from "@medusajs/icons";
-import { useTranslation } from "react-i18next";
-
 import { NotificationTemplate } from "./notification-template-list-table";
 import { useNavigate } from "react-router-dom";
-// import { sdk } from "../../../../../lib/client";
-import { ActionMenu } from "../../../../common/action-menu";
 import { Button, IconButton, Prompt } from "@medusajs/ui";
 
 type NotificationTemplateRowActionsProps = {
@@ -14,7 +10,6 @@ type NotificationTemplateRowActionsProps = {
 export const NotificationTemplateRowActions = ({
   notificationTemplate,
 }: NotificationTemplateRowActionsProps) => {
-  const { t } = useTranslation();
   const navigation = useNavigate();
   const handleDelete = async () => {
     await fetch(`/admin/notification-template/${notificationTemplate?.id}`, {

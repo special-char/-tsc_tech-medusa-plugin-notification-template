@@ -1,23 +1,12 @@
 import { RouteFocusModal } from "../../common/modals/route-focus-modal";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { Input, Text, Textarea } from "@medusajs/ui";
-import React, {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useMemo,
-  useState,
-  useRef,
-} from "react";
+import { Text } from "@medusajs/ui";
+import { Dispatch, SetStateAction, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { sdk } from "../../../lib/client";
 import { Event } from "../notification-template-list/components/notification-template-list-table";
 import TagList from "../common/components/TagList";
-// import NotificationTemplateForm from "../common/components/NotificationTempalteForm";
 import useLastFocusedElement from "../../../hooks/use-last-focused-element";
 import { NOTIFICATION_EVENTS } from "../../../utils/event";
-import EventSelect from "../common/components/SelectEvent";
-import TagInputComponent from "../common/components/TagInput";
 import DynamicForm from "../common/components/DynamicForm";
 
 export type SchemaField = {
