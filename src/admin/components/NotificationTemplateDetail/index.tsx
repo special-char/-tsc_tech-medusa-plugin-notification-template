@@ -5,14 +5,14 @@ import { Text } from "@medusajs/ui";
 import { FieldValues, useForm } from "react-hook-form";
 import { useMemo } from "react";
 import useLastFocusedElement from "../../hooks/use-last-focused-element";
-import { Tag } from "../../routes/notification-template/[id]/page";
+// import { Tag } from "../../routes/notification-template/[id]/page";
 import { RouteFocusModal } from "../common/modals";
 
 type Props = {
   id?: string;
   schema: Record<string, SchemaField>;
   onSubmit: (data: FieldValues) => void;
-  tags: Tag[];
+  tags: any;
 };
 
 const NotificationDetails = (props: Props) => {
@@ -38,12 +38,12 @@ const NotificationDetails = (props: Props) => {
       </RouteFocusModal.Header>
 
       <RouteFocusModal.Body className="relative flex w-full overflow-y-scroll px-8 py-16">
-        <DynamicForm
+        {/* <DynamicForm
           form={formMethods}
           isPending={formMethods.formState.isSubmitting}
           onSubmit={props.onSubmit}
           schema={props.schema}
-        />
+        /> */}
         <div className="flex flex-1 flex-col p-4">
           <Text size="small">Available Tags</Text>
           <TagList
