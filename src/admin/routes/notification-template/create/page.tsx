@@ -71,7 +71,6 @@ const createGiftTemplates = async (data: any) => {
 const CreateNotificationTemplate = () => {
   const [tags, setTags] = useState<Event["tags"]>({});
   const navigate = useNavigate();
-  
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const response = await createGiftTemplates(data);
@@ -81,13 +80,12 @@ const CreateNotificationTemplate = () => {
       toast.error((error as MedusaError)?.message || "Something went wrong");
     }
   };
-  return null;
-  // return (
-  //   <NotificationDetails
-  //     schema={schema({ setTags })}
-  //     onSubmit={onSubmit}
-  //     tags={tags as any}
-  //   />
-  // );
+  return (
+    <NotificationDetails
+      schema={schema({ setTags })}
+      onSubmit={onSubmit}
+      tags={tags as any}
+    />
+  );
 };
 export default CreateNotificationTemplate;
