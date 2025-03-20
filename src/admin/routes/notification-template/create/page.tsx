@@ -80,12 +80,13 @@ const CreateNotificationTemplate = () => {
       toast.error((error as MedusaError)?.message || "Something went wrong");
     }
   };
-  return (
-    <NotificationDetails
-      schema={schema({ setTags })}
-      onSubmit={onSubmit}
-      tags={tags as any}
-    />
-  );
+  return null;
+  // return (
+  //   <NotificationDetails
+  //     schema={schema({ setTags })}
+  //     onSubmit={onSubmit}
+  //     tags={tags as any}
+  //   />
+  // );
 };
 export default CreateNotificationTemplate;
