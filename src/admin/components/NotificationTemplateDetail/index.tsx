@@ -44,7 +44,7 @@ const NotificationDetails = (props: Props) => {
           onSubmit={props.onSubmit}
           schema={props.schema}
         /> */}
-        <div className="flex flex-1 flex-col p-4">
+        {/* <div className="flex flex-1 flex-col p-4">
           <Text size="small">Available Tags</Text>
           <TagList
             tags={props.tags}
@@ -52,7 +52,7 @@ const NotificationDetails = (props: Props) => {
               insertTag(tag);
             }}
           />
-        </div>
+        </div> */}
       </RouteFocusModal.Body>
     </RouteFocusModal>
   );
