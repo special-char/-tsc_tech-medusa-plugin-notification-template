@@ -1,6 +1,4 @@
 import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk";
-import NotificationTemplateModuleService from "../../../modules/notification-template/service";
-import { NOTIFICATION_TEMPLATE_MODULE } from "../../../modules/notification-template";
 
 type WorkflowInput = {
   name: string;

@@ -5,8 +5,9 @@ import { useState } from "react";
 import { Event } from "../../../components/notification-template-row-actions";
 import { sdk } from "../../../utils/sdk";
 import { useNavigate } from "react-router-dom";
+import { toast } from "@medusajs/ui";
+import { MedusaError } from "@medusajs/framework/utils";
 
-type Props = {};
 const schema = ({ setTags }) => ({
   event_name: {
     label: "Event",
@@ -57,17 +58,13 @@ const schema = ({ setTags }) => ({
 });
 
 const createGiftTemplates = async (data: any) => {
-  try {
-    return await sdk.client.fetch(`/admin/notification-template`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: data,
-    });
-  } catch (error) {
-    console.log(error);
-  }
+  return await sdk.client.fetch(`/admin/notification-template`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: data,
+  });
 };
 
 const CreateNotificationTemplate = () => {
@@ -79,7 +76,7 @@ const CreateNotificationTemplate = () => {
       console.log({ response });
       navigate("/notification-template");
     } catch (error) {
-      console.log("onSubmit error", error);
+      toast.error((error as MedusaError)?.message || "Something went wrong");
     }
   };
   return (

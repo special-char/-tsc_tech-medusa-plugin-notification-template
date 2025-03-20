@@ -1,17 +1,18 @@
 import { useLocation } from "react-router-dom";
 import DynamicForm, { SchemaField } from "../DynamicForm";
-import { RouteFocusModal } from "../common/modals";
 import TagList from "../TagList";
 import { Text } from "@medusajs/ui";
 import { FieldValues, useForm } from "react-hook-form";
 import { useMemo } from "react";
 import useLastFocusedElement from "../../hooks/use-last-focused-element";
+import { Tag } from "../../routes/notification-template/[id]/page";
+import { RouteFocusModal } from "../common/modals";
 
 type Props = {
   id?: string;
   schema: Record<string, SchemaField>;
   onSubmit: (data: FieldValues) => void;
-  tags: string[];
+  tags: Tag[];
   insertTag: (tag: string) => void;
 };
 

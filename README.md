@@ -81,20 +81,15 @@ The plugin interface will be displayed under the "Extensions" section. The "Noti
 To use the notification template in your workflow hook, import the `setExtraData` and `subscriberWorkflow` functions from the `medusa-plugin-notification-template/workflows`:
 
 ```typescript
-import {
-  subscriberWorkflow,
-  setExtraData,
-} from "medusa-plugin-notification-template/workflows";
-
-subscriberWorkflow?.hooks?.subscriberHook(
-  async ({ data, name }, { container }) => {
-    // example JSON object
-    const value = {
-      key: "value",
-    };
-    setExtraData(value, container);
-  }
-);
+import { subscriberWorkflow } from "medusa-plugin-notification-template/workflows/subscriber-workflow";
+subscriberWorkflow.hooks.subscriberHook(({ name, data }, { container }) => {
+  const notificationService =
+    container.resolve("notification-template");
+  const value = {
+    otp: "1234",
+  };
+  notificationService.setExtraData(value, container);
+});
 ```
 
 #### 🎯 Purpose of the Subscriber Hook

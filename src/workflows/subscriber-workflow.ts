@@ -20,8 +20,8 @@ export const subscriberWorkflow = createWorkflow(
     const { name, data } = input;
 
     const subscriberHook = createHook("subscriberHook", {
-      name,
-      data,
+        name,
+        data,
     });
 
     const { entityName } = getEntityNameStep({ name });

@@ -14,7 +14,6 @@ import {
   NotificationTemplateRowActions,
 } from "../notification-template-row-actions";
 import { sdk } from "../../utils/sdk";
-// import { useDataTable } from "../../hooks/use-data-table";
 
 const columnHelper = createDataTableColumnHelper();
 
@@ -27,12 +26,13 @@ const columns = [
     maxSize: 200,
   }),
   columnHelper.accessor("created_at", {
-    header: "Created",
+    header: "Created At",
   }),
   columnHelper.accessor("updated_at", {
-    header: "Updated",
+    header: "Updated At",
   }),
   columnHelper.accessor("actions", {
+    header: "Actions",
     cell: ({ row }) => {
       return (
         <div className="mx-4">

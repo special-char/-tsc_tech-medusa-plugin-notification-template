@@ -3,14 +3,10 @@ import NotificationDetails from "../../../components/NotificationTemplateDetail"
 import { useLocation, useNavigate } from "react-router-dom";
 import { sdk } from "../../../utils/sdk";
 import { NOTIFICATION_EVENTS } from "../../../utils/event";
+import { toast } from "@medusajs/ui";
+import { MedusaError } from "@medusajs/framework/utils";
 
 const schema = {
-  // event_name: {
-  //   label: "Event",
-  //   fieldType: "EventSelect",
-  //   validation: { required: true },
-  //   props: { eventList: NOTIFICATION_EVENTS, setTags },
-  // },
   subject: {
     label: "Subject",
     fieldType: "Input",
@@ -54,17 +50,30 @@ const schema = {
 };
 
 const updateGiftTemplates = async ({ id, data }: { id: string; data: any }) => {
-  try {
-    return await sdk.client.fetch(`/admin/notification-template/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: data,
-    });
-  } catch (error) {
-    console.log(error);
-  }
+  return await sdk.client.fetch(`/admin/notification-template/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: data,
+  });
+};
+
+export type Tag = {
+  id: string;
+  company_name: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: null;
+  has_account: boolean;
+  metadata: null;
+  created_by: string;
+  created_at: string;
+  updated_at: string;
+  deleted_at: null;
+  groups: never[];
+  addresses: never[];
 };
 
 const page = () => {
@@ -76,11 +85,12 @@ const page = () => {
       console.log({ response });
       navigate("/notification-template");
     } catch (error) {
-      console.log("onSubmit error", error);
+      toast.error((error as MedusaError)?.message || "Something went wrong");
     }
   };
   const events = NOTIFICATION_EVENTS;
-  const tags = events?.find((x) => x?.name === state?.event_name)?.tags;
+  const tags = events?.find((x) => x?.name === state?.event_name)
+    ?.tags as Tag[];
   return (
     <div>
       <NotificationDetails
