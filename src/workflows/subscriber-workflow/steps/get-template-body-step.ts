@@ -59,13 +59,13 @@ export const getTemplateBodyStep = createStep(
     };
 
     const templateBody = {
-      emailBody: Handlebars.compile(notificationTemplate.template)(
+      emailBody: Handlebars.compile(notificationTemplate?.template)(
         entityDetails
       ),
-      to: compileAndParseEmails(notificationTemplate.to),
-      cc: compileAndParseEmails(notificationTemplate.cc),
-      bcc: compileAndParseEmails(notificationTemplate.bcc),
-      subject: Handlebars.compile(notificationTemplate.subject)(entityDetails),
+      to: compileAndParseEmails(notificationTemplate?.to),
+      cc: compileAndParseEmails(notificationTemplate?.cc),
+      bcc: compileAndParseEmails(notificationTemplate?.bcc),
+      subject: Handlebars.compile(notificationTemplate?.subject)(entityDetails),
     };
     return new StepResponse({ templateBody, entityDetails });
   }

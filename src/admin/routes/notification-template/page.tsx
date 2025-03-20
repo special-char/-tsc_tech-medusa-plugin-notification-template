@@ -1,11 +1,11 @@
 import { defineRouteConfig } from "@medusajs/admin-sdk";
 import { BellAlert } from "@medusajs/icons";
-import { NotificationTemplateListTable } from "../../../components/notification-templates/notification-template-list/components/notification-template-list-table";
+import { DataTableComponent } from "../../components/DataTable";
 
-const CustomSettingPage = () => {
+const NotificationTemplateList = () => {
   return (
     <>
-      <NotificationTemplateListTable />
+      <DataTableComponent />
     </>
   );
 };
@@ -15,4 +15,4 @@ export const config = defineRouteConfig({
   label: "Notification Template",
 });
 
-export default CustomSettingPage;
+export default NotificationTemplateList;

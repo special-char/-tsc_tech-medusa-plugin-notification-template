@@ -1,11 +1,30 @@
 import { PencilSquare, Trash } from "@medusajs/icons";
-import { NotificationTemplate } from "./notification-template-list-table";
 import { useNavigate } from "react-router-dom";
-import { Button, IconButton, Prompt } from "@medusajs/ui";
+import { IconButton, Prompt } from "@medusajs/ui";
 
 type NotificationTemplateRowActionsProps = {
   notificationTemplate: NotificationTemplate;
 };
+export type Event = {
+  id?: string;
+  name?: string;
+  tags?: Record<string, any>;
+};
+
+// Define a type for the brand data
+export interface NotificationTemplate {
+  id?: string;
+
+  template?: string;
+
+  created_at?: string;
+
+  updated_at?: string;
+
+  deleted_at?: string | null;
+
+  event_name: string;
+}
 
 export const NotificationTemplateRowActions = ({
   notificationTemplate,

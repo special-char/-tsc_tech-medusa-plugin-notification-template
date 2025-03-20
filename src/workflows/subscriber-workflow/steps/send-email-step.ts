@@ -67,14 +67,14 @@ const sendEmailStep = createStep(
       const response = await notificationService.createNotifications([
         {
           channel: "email",
-          to: Array.isArray(templateBody.to)
-            ? templateBody.to[0]
-            : (templateBody.to as unknown as string),
+          to: Array.isArray(templateBody?.to)
+            ? templateBody?.to[0]
+            : (templateBody?.to as unknown as string),
           data: {
             ...notificationTemplate,
             ...templateBody,
           } as unknown as any,
-          template: templateBody.emailBody,
+          template: templateBody?.emailBody,
           content: { entityDetails } as unknown as any,
         },
       ]);
