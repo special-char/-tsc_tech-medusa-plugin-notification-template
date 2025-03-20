@@ -1,101 +1,102 @@
-import { FieldValues, SubmitHandler } from "react-hook-form";
-import NotificationDetails from "../../../components/NotificationTemplateDetail";
-import { useLocation, useNavigate } from "react-router-dom";
-import { sdk } from "../../../utils/sdk";
-import { NOTIFICATION_EVENTS } from "../../../utils/event";
-import { toast } from "@medusajs/ui";
-import { MedusaError } from "@medusajs/framework/utils";
+// import { FieldValues, SubmitHandler } from "react-hook-form";
+// import NotificationDetails from "../../../components/NotificationTemplateDetail";
+// import { useLocation, useNavigate } from "react-router-dom";
+// import { sdk } from "../../../utils/sdk";
+// import { NOTIFICATION_EVENTS } from "../../../utils/event";
+// import { toast } from "@medusajs/ui";
+// import { MedusaError } from "@medusajs/framework/utils";
 
-const schema = {
-  subject: {
-    label: "Subject",
-    fieldType: "Input",
-    props: {
-      placeholder: "Congratulations on your purchase",
-    },
-    validation: { required: "Subject is required" },
-  },
-  to: {
-    label: "To",
-    fieldType: "TagInputComponent",
-    props: {
-      placeholder: "example@gmail.com",
-    },
-    validation: { required: "To is required" },
-  },
-  cc: {
-    label: "CC",
-    fieldType: "TagInputComponent",
-    props: {
-      placeholder: "example@gmail.com",
-    },
-  },
-  bcc: {
-    label: "BCC",
-    fieldType: "TagInputComponent",
-    props: {
-      placeholder: "example@gmail.com",
-    },
-  },
-  template: {
-    label: "Template (HTML format)",
-    fieldType: "Textarea",
-    props: {
-      id: "contentTextarea",
-      placeholder: "<html>...</html>",
-      className: "min-h-52",
-    },
-    validation: { required: "Template is required" },
-  },
-};
+// const schema = {
+//   subject: {
+//     label: "Subject",
+//     fieldType: "Input",
+//     props: {
+//       placeholder: "Congratulations on your purchase",
+//     },
+//     validation: { required: "Subject is required" },
+//   },
+//   to: {
+//     label: "To",
+//     fieldType: "TagInputComponent",
+//     props: {
+//       placeholder: "example@gmail.com",
+//     },
+//     validation: { required: "To is required" },
+//   },
+//   cc: {
+//     label: "CC",
+//     fieldType: "TagInputComponent",
+//     props: {
+//       placeholder: "example@gmail.com",
+//     },
+//   },
+//   bcc: {
+//     label: "BCC",
+//     fieldType: "TagInputComponent",
+//     props: {
+//       placeholder: "example@gmail.com",
+//     },
+//   },
+//   template: {
+//     label: "Template (HTML format)",
+//     fieldType: "Textarea",
+//     props: {
+//       id: "contentTextarea",
+//       placeholder: "<html>...</html>",
+//       className: "min-h-52",
+//     },
+//     validation: { required: "Template is required" },
+//   },
+// };
 
-const updateGiftTemplates = async ({ id, data }: { id: string; data: any }) => {
-  return await sdk.client.fetch(`/admin/notification-template/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: data,
-  });
-};
+// const updateGiftTemplates = async ({ id, data }: { id: string; data: any }) => {
+//   return await sdk.client.fetch(`/admin/notification-template/${id}`, {
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: data,
+//   });
+// };
 
-export type Tag = {
-  id: string;
-  company_name: string;
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone: null;
-  has_account: boolean;
-  metadata: null;
-  created_by: string;
-  created_at: string;
-  updated_at: string;
-  deleted_at: null;
-  groups: never[];
-  addresses: never[];
-};
+// export type Tag = {
+//   id: string;
+//   company_name: string;
+//   first_name: string;
+//   last_name: string;
+//   email: string;
+//   phone: null;
+//   has_account: boolean;
+//   metadata: null;
+//   created_by: string;
+//   created_at: string;
+//   updated_at: string;
+//   deleted_at: null;
+//   groups: never[];
+//   addresses: never[];
+// };
 
 const page = () => {
-  const { state } = useLocation();
-  const navigate = useNavigate();
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    try {
-      const response = await updateGiftTemplates({ id: state?.id, data });
-      console.log({ response });
-      navigate("/notification-template");
-    } catch (error) {
-      toast.error((error as MedusaError)?.message || "Something went wrong");
-    }
-  };
-  const events = NOTIFICATION_EVENTS;
-  const tags = events?.find((x) => x?.name === state?.event_name)
-    ?.tags as Tag[];
-  return (
-    <div>
-      <NotificationDetails schema={schema} onSubmit={onSubmit} tags={tags} />
-    </div>
-  );
+  return null;
+  // const { state } = useLocation();
+  // const navigate = useNavigate();
+  // const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+  //   try {
+  //     const response = await updateGiftTemplates({ id: state?.id, data });
+  //     console.log({ response });
+  //     navigate("/notification-template");
+  //   } catch (error) {
+  //     toast.error((error as MedusaError)?.message || "Something went wrong");
+  //   }
+  // };
+  // const events = NOTIFICATION_EVENTS;
+  // const tags = events?.find((x) => x?.name === state?.event_name)
+  //   ?.tags as Tag[];
+  // return (
+  //   <div>
+  //     <NotificationDetails schema={schema} onSubmit={onSubmit} tags={tags} />
+  //   </div>
+  // );
 };
 
 export default page;

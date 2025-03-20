@@ -1,8 +1,8 @@
 import { defineRouteConfig } from "@medusajs/admin-sdk";
 import { BellAlert } from "@medusajs/icons";
-import { DataTableComponent } from "../../components/DataTable";
+// import { DataTableComponent } from "../../components/DataTable";
 
-const NotificationTemplateList = () => <DataTableComponent />;
+const NotificationTemplateList = () => null;
 
 export const config = defineRouteConfig({
   icon: BellAlert,
