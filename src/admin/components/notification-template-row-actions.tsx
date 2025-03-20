@@ -1,6 +1,7 @@
 import { PencilSquare, Trash } from "@medusajs/icons";
 import { useNavigate } from "react-router-dom";
 import { IconButton, Prompt } from "@medusajs/ui";
+import { sdk } from "../utils/sdk";
 
 type NotificationTemplateRowActionsProps = {
   notificationTemplate: NotificationTemplate;
@@ -31,9 +32,10 @@ export const NotificationTemplateRowActions = ({
 }: NotificationTemplateRowActionsProps) => {
   const navigation = useNavigate();
   const handleDelete = async () => {
-    await fetch(`/admin/notification-template/${notificationTemplate?.id}`, {
+    await sdk.client.fetch(`/admin/notification-template`, {
       method: "DELETE",
     });
+
     navigation("/notification-template");
     navigation(0);
   };
