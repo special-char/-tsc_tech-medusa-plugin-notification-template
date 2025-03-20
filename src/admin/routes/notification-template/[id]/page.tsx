@@ -93,12 +93,7 @@ const page = () => {
     ?.tags as Tag[];
   return (
     <div>
-      <NotificationDetails
-        schema={schema}
-        onSubmit={onSubmit}
-        tags={tags}
-        insertTag={() => {}}
-      />
+      <NotificationDetails schema={schema} onSubmit={onSubmit} tags={tags} />
     </div>
   );
 };

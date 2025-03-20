@@ -13,7 +13,6 @@ type Props = {
   schema: Record<string, SchemaField>;
   onSubmit: (data: FieldValues) => void;
   tags: Tag[];
-  insertTag: (tag: string) => void;
 };
 
 const NotificationDetails = (props: Props) => {

@@ -7,8 +7,9 @@ import { sdk } from "../../../utils/sdk";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@medusajs/ui";
 import { MedusaError } from "@medusajs/framework/utils";
+import { Tag } from "../[id]/page";
 
-const schema = ({ setTags }) => ({
+const schema = ({ setTags }: { setTags: (tags: Event["tags"]) => void }) => ({
   event_name: {
     label: "Event",
     fieldType: "EventSelect",
@@ -84,7 +85,7 @@ const CreateNotificationTemplate = () => {
       <NotificationDetails
         schema={schema({ setTags })}
         onSubmit={onSubmit}
-        tags={tags}
+        tags={tags as Tag[]}
       />
     </div>
   );
