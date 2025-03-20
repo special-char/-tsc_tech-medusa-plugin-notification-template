@@ -5,7 +5,8 @@
   "author": "Medusa (https://medusajs.com)",
   "license": "MIT",
   "files": [
-    ".medusa/server"
+    ".medusa/server",
+    "types"
   ],
   "exports": {
     "./package.json": "./package.json",
@@ -14,6 +15,14 @@
     "./modules/*": "./.medusa/server/src/modules/*/index.js",
     "./providers/*": "./.medusa/server/src/providers/*/index.js",
     "./*": "./.medusa/server/src/*.js"
+  },
+  "types": "./types/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "workflows": [
+        "./types/workflows.d.ts"
+      ]
+    }
   },
   "keywords": [
     "medusa",
@@ -26,12 +35,13 @@
   "scripts": {
     "build": "medusa plugin:build",
     "dev": "medusa plugin:develop",
+    "plugin:publish": "npx medusa plugin:publish",
     "prepublishOnly": "medusa plugin:build"
   },
   "devDependencies": {
     "@medusajs/admin-sdk": "2.4.0",
     "@medusajs/cli": "2.4.0",
-    "@medusajs/framework": "2.4.0",
+    "@medusajs/framework": "^2.6.1",
     "@medusajs/icons": "2.4.0",
     "@medusajs/medusa": "2.4.0",
     "@medusajs/test-utils": "2.4.0",
@@ -83,7 +93,10 @@
     "node": ">=20"
   },
   "packageManager": "yarn@4.4.0+sha512.91d93b445d9284e7ed52931369bc89a663414e5582d00eea45c67ddc459a2582919eece27c412d6ffd1bd0793ff35399381cb229326b961798ce4f4cc60ddfdb",
-  "dependencies": {},
+  "dependencies": {
+    "@medusajs/js-sdk": "^2.6.1",
+    "@medusajs/framework": "2.4.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/harzh307/medusa-plugin-notification-template"
