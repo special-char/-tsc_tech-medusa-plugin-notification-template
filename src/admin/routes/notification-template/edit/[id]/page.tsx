@@ -1,10 +1,10 @@
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
-import { sdk } from "../../../utils/sdk";
 import { toast } from "@medusajs/ui";
 import { MedusaError } from "@medusajs/framework/utils";
 import { NOTIFICATION_EVENTS } from "../../../../utils/event";
 import NotificationDetails from "../../../../components/NotificationTemplateDetail";
+import { sdk } from "../../../../utils/sdk";
 
 const schema = {
   subject: {
