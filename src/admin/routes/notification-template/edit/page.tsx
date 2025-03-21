@@ -82,7 +82,6 @@ const page = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const response = await updateGiftTemplates({ id: state?.id, data });
-      console.log({ response });
       navigate("/notification-template");
     } catch (error) {
       toast.error((error as MedusaError)?.message || "Something went wrong");
@@ -90,7 +89,7 @@ const page = () => {
   };
   const events = NOTIFICATION_EVENTS;
   const tags = events?.find((x) => x?.name === state?.event_name)
-    ?.tags as Tag[];
+    ?.tags as unknown as Tag[];
   return (
     <NotificationDetails schema={schema} onSubmit={onSubmit} tags={tags} />
   );

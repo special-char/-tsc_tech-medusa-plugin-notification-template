@@ -63,7 +63,6 @@ export function DataTableComponent({}) {
     return ((data as any)?.data as any[]) || [];
   }, [(data as any)?.data]);
 
-  console.log("Notification Templates Array:", notificationTemplatesArray);
 
   const table = useDataTable({
     data: notificationTemplatesArray,

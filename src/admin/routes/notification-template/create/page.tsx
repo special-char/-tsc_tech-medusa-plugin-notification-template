@@ -74,7 +74,6 @@ const CreateNotificationTemplate = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const response = await createGiftTemplates(data);
-      console.log({ response });
       navigate("/notification-template");
     } catch (error) {
       toast.error((error as MedusaError)?.message || "Something went wrong");

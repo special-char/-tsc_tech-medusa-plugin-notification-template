@@ -8,6 +8,7 @@ import { getNotificationTemplateStep } from "./steps/get-notification-template-s
 import { getEntityNameStep } from "./steps/get-entity-name-step";
 import { useQueryGraphStep } from "@medusajs/medusa/core-flows";
 import { getTemplateBodyStep } from "./steps/get-template-body-step";
+import { validateInputData } from "./steps/validate-input-data";
 
 type WorkflowInput = {
   name: string;
@@ -17,11 +18,11 @@ type WorkflowInput = {
 export const subscriberWorkflow = createWorkflow(
   "subscriber-workflow",
   function (input: WorkflowInput) {
-    const { name, data } = input;
+    const { name, data } = validateInputData({ input });
 
     const subscriberHook = createHook("subscriberHook", {
-        name,
-        data,
+      name,
+      data,
     });
 
     const { entityName } = getEntityNameStep({ name });
@@ -32,7 +33,7 @@ export const subscriberWorkflow = createWorkflow(
 
     const { data: entityData } = useQueryGraphStep({
       entity: entityName,
-      filters: { id: data.id },
+      filters: data,
       fields: ["*", "*.*"],
     });
 

@@ -32,6 +32,7 @@ const NOTIFICATION_EVENTS = [
   { id: 16, name: "order.canceled" },
   { id: 17, name: "order.completed" },
   { id: 18, name: "order.archived" },
+  //
   { id: 19, name: "order.fulfillment_created" },
   { id: 20, name: "order.fulfillment_canceled" },
   { id: 21, name: "order.return_requested" },
@@ -39,6 +40,7 @@ const NOTIFICATION_EVENTS = [
   { id: 23, name: "order.claim_created" },
   { id: 24, name: "order.exchange_created" },
   { id: 25, name: "order.transfer_requested" },
+  //
   { id: 26, name: "product.created" },
   { id: 27, name: "product.updated" },
   { id: 28, name: "product.deleted" },

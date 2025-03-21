@@ -33,10 +33,10 @@ const sendEmailStep = createStep(
     try {
       const notificationService = container.resolve("notification");
 
-      // if (!entityData.length) {
-      //   console.warn(`No entity data found for ID: ${data.id}`);
-      //   return;
-      // }
+      if (!notificationTemplate) {
+        console.warn(`No notification template found for this event`);
+        return;
+      }
       const cacheModuleService = container.resolve(Modules.CACHE);
 
       // const entityDetails = {
