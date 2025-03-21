@@ -2,9 +2,9 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "@medusajs/ui";
 import { MedusaError } from "@medusajs/framework/utils";
-import { NOTIFICATION_EVENTS } from "../../../../utils/event";
-import NotificationDetails from "../../../../components/NotificationTemplateDetail";
-import { sdk } from "../../../../utils/sdk";
+import { NOTIFICATION_EVENTS } from "../../../utils/event";
+import NotificationDetails from "../../../components/NotificationTemplateDetail";
+import { sdk } from "../../../utils/sdk";
 
 const schema = {
   subject: {
@@ -92,7 +92,7 @@ const page = () => {
   const tags = events?.find((x) => x?.name === state?.event_name)
     ?.tags as Tag[];
   return (
-      <NotificationDetails schema={schema} onSubmit={onSubmit} tags={tags} />
+    <NotificationDetails schema={schema} onSubmit={onSubmit} tags={tags} />
   );
 };
 

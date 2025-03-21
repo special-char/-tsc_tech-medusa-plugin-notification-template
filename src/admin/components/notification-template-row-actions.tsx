@@ -39,11 +39,12 @@ export const NotificationTemplateRowActions = ({
     navigation("/notification-template");
     navigation(0);
   };
+
   return (
     <div className="gap-2 flex">
       <IconButton
         onClick={() =>
-          navigation(`/notification-template/edit/${notificationTemplate.id}`, {
+          navigation(`/notification-template/edit`, {
             state: notificationTemplate,
           })
         }
