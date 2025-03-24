@@ -26,15 +26,15 @@ The following events are not available in the current version of the plugin:
 ## 📦 Installation
 
 ```bash
-npm install medusa-plugin-notification-template
+npm install @tsc_tech/medusa-plugin-notification-template
 
 # or using yarn
-yarn add medusa-plugin-notification-template
+yarn add @tsc_tech/medusa-plugin-notification-template
 ```
 
 ## 📋 Requirements
 
-- Medusa server >= 2.4.0
+- Medusa server > 2.5.0
 - Node.js >= 20
 
 ## ⚙️ Configuration
@@ -45,7 +45,7 @@ Add the plugin to your `medusa-config.js`:
 const plugins = [
   // ... other plugins
   {
-    resolve: "medusa-plugin-notification-template",
+    resolve: "@tsc_tech/medusa-plugin-notification-template",
     options: {
       // plugin options if any
     }

@@ -32,9 +32,12 @@ export const NotificationTemplateRowActions = ({
 }: NotificationTemplateRowActionsProps) => {
   const navigation = useNavigate();
   const handleDelete = async () => {
-    await sdk.client.fetch(`/admin/notification-template`, {
-      method: "DELETE",
-    });
+    await sdk.client.fetch(
+      `/admin/notification-template/${notificationTemplate.id}`,
+      {
+        method: "DELETE",
+      }
+    );
 
     navigation("/notification-template");
     navigation(0);
