@@ -30,6 +30,9 @@ npm install @tsc_tech/medusa-plugin-notification-template
 
 # or using yarn
 yarn add @tsc_tech/medusa-plugin-notification-template
+
+# Run migration
+npx medusa db:migrate
 ```
 
 ## 📋 Requirements
