@@ -72,7 +72,7 @@ The plugin interface will be displayed under the "Extensions" section. The "Noti
      - Subject
      - To, CC, and BCC fields
 
-3. **Edit Template View** (`/notification-template/[id]`)
+3. **Edit Template View** (`/notification-template/edit`)
    - Modify existing templates
    - Preview template with sample data
 
