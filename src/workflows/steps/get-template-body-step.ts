@@ -44,6 +44,10 @@ export const getTemplateBodyStep = createStep(
       console.warn(`No entity data found for ID: ${data.id}`);
       return new StepResponse();
     }
+    if (!notificationTemplate) {
+      console.warn(`No notification template found for this event`);
+      return new StepResponse();
+    }
 
     const entityDetails = {
       ...(entityData[0] && { ...entityData[0] }),

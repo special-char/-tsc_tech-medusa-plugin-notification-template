@@ -108,6 +108,65 @@ Your order #{{order.display_id}} has been confirmed.
 Thank you for shopping with us!
 ```
 
+### 📧 Notification Service Implementation
+
+#### Send Method Example
+Here's an example of the notification service's `send` method:
+
+```typescript
+async send(
+    notification: ProviderSendNotificationDTO
+  ): Promise<ProviderSendNotificationResultsDTO> {
+    console.log({ notification });
+
+   // your service code as it is
+  }
+```
+
+#### Notification Object Structure
+
+The notification object passed to the send method has the following structure:
+```json
+{
+  id,                // Notification ID
+  channel,          // Communication channel (e.g., 'email')
+  to,               // Primary recipient
+  data: {
+    // Contains all email-specific data and template information
+    id,
+    template,       // Raw template with handlebars syntax
+    subject,        // Email subject
+    event_name,     // Type of event (e.g., 'product.updated')
+    to: [],              // Array of recipients
+    cc: [],              // Array of CC recipients
+    bcc: [],             // Array of BCC recipients
+    created_at,
+    updated_at,
+    deleted_at,
+    emailBody      // Processed template content
+  },
+  template,         // Processed template content
+  content: {
+    // Contains dynamic data used in template rendering
+    entityDetails: {}    // Object containing entity-specific data
+  },
+  provider_id      // ID of the notification provider (e.g., 'smtp')
+}
+```
+
+#### Important Structure Notes:
+
+1. The `data` object contains all email-related configurations including:
+   - Template configuration (`template`, `subject`)
+   - Recipient information (`to`, `cc`, `bcc`)
+   - Event information (`event_name`)
+   - Email content (`emailBody`)
+
+2. The `content` object contains:
+   - `entityDetails`: Dynamic data that will be used to populate the template variables. For example, if it's a product update notification, this would contain the product details.
+
+This structure allows for separation between email configuration (`data`) and the dynamic content (`content.entityDetails`) that will be used in the template.
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.

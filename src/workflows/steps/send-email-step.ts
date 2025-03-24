@@ -33,36 +33,11 @@ const sendEmailStep = createStep(
     try {
       const notificationService = container.resolve("notification");
 
-      if (!notificationTemplate) {
-        console.warn(`No notification template found for this event`);
-        return;
+      if (!notificationTemplate || !entityDetails || !templateBody) {
+        console.warn(`No notification template or data found for this event`);
+        return new StepResponse();
       }
       const cacheModuleService = container.resolve(Modules.CACHE);
-
-      // const entityDetails = {
-      //   ...(entityData[0] && { ...entityData[0] }),
-      //   ...(extraData && { ...extraData }),
-      // };
-
-      // const compileAndParseEmails = (template?: string): string[] => {
-      //   if (!template) return [];
-      //   return Handlebars.compile(template)(entityDetails)
-      //     .split(",")
-      //     .map((email) => email.trim())
-      //     .filter((email) => email);
-      // };
-
-      // const templateBody = {
-      //   emailBody: Handlebars.compile(notificationTemplate.template)(
-      //     entityDetails
-      //   ),
-      //   to: compileAndParseEmails(notificationTemplate.to),
-      //   cc: compileAndParseEmails(notificationTemplate.cc),
-      //   bcc: compileAndParseEmails(notificationTemplate.bcc),
-      //   subject: Handlebars.compile(notificationTemplate.subject)(
-      //     entityDetails
-      //   ),
-      // };
 
       const response = await notificationService.createNotifications([
         {
