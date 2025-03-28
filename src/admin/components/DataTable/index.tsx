@@ -14,6 +14,7 @@ import {
   NotificationTemplateRowActions,
 } from "../notification-template-row-actions";
 import { sdk } from "../../utils/sdk";
+import { BellAlert } from "@medusajs/icons";
 
 const columnHelper = createDataTableColumnHelper();
 
@@ -63,7 +64,6 @@ export function DataTableComponent({}) {
     return ((data as any)?.data as any[]) || [];
   }, [(data as any)?.data]);
 
-
   const table = useDataTable({
     data: notificationTemplatesArray,
     columns: columns as unknown as any,
@@ -91,7 +91,14 @@ export function DataTableComponent({}) {
             <Link to="create">Create</Link>
           </Button>
         </DataTable.Toolbar>
-        <DataTable.Table />
+        <DataTable.Table
+          emptyState={{
+            empty: {
+              heading: "No Data",
+              description: "No Notification Templates found",
+            },
+          }}
+        />
         <DataTable.Pagination />
       </DataTable>
     </Container>
