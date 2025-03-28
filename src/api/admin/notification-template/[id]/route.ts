@@ -47,6 +47,8 @@ export const DELETE = async (
 ) => {
   const { id } = req.params;
   const query = req.scope.resolve("query");
+  console.log("req.params", id);
+
   const notificationTemplateModuleService: NotificationTemplateModuleService =
     req.scope.resolve(NOTIFICATION_TEMPLATE_MODULE);
   const notificationTemplate = await query.graph({
@@ -58,7 +60,7 @@ export const DELETE = async (
   });
   if (notificationTemplate.data[0]) {
     await notificationTemplateModuleService.deleteNotificationTemplates(id);
-    res.send({});
+    return res.send({});
   }
 
   throw new MedusaError(MedusaError.Types.NOT_FOUND, "Template not found.");
