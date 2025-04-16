@@ -170,9 +170,11 @@ The notification object passed to the send method has the following structure:
 
 This structure allows for separation between email configuration (`data`) and the dynamic content (`content.entityDetails`) that will be used in the template.
 
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
 
 ## 📜 License
 
