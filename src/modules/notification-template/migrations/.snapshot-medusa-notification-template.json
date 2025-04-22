@@ -102,20 +102,20 @@
           "mappedType": "datetime"
         }
       },
-      "name": "notification-template",
+      "name": "notification_template",
       "schema": "public",
       "indexes": [
         {
-          "keyName": "IDX_notification-template_deleted_at",
+          "keyName": "IDX_notification_template_deleted_at",
           "columnNames": [],
           "composite": false,
           "constraint": false,
           "primary": false,
           "unique": false,
-          "expression": "CREATE INDEX IF NOT EXISTS \"IDX_notification-template_deleted_at\" ON \"notification-template\" (deleted_at) WHERE deleted_at IS NULL"
+          "expression": "CREATE INDEX IF NOT EXISTS \"IDX_notification_template_deleted_at\" ON \"notification_template\" (deleted_at) WHERE deleted_at IS NULL"
         },
         {
-          "keyName": "notification-template_pkey",
+          "keyName": "notification_template_pkey",
           "columnNames": [
             "id"
           ],

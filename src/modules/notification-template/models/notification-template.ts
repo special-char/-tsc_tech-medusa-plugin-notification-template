@@ -1,5 +1,5 @@
 import { model } from "@medusajs/framework/utils";
-export const NotificationTemplate = model.define("notification-template", {
+export const NotificationTemplate = model.define("notification_template", {
   id: model.id().primaryKey(),
   template: model.text(),
   subject: model.text(),
